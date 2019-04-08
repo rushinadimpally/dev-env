@@ -1,0 +1,34 @@
+PITFALL: Install ZSH using normal package manager. Chicken and egg problem with nix.
+Make zsh the default (edit /etc/shells to add the new shell ) + chsh -s <path_to_zsh>
+PITFALL: Need to fully logout and log back in . LOCK screen won't work
+
+Install nix (using the default package manager: apt..)
+Using nix install:
+git
+tmux
+emacs
+oh-my-zsh
+powerlevel9k (zsh plugin)
+
+Get dot files from git: https://github.com/rushinadimpally/dotfiles.git
+Create symlinks for dot files (aliases, tmux.conf)
+
+Installing oh-my-zsh:
+since the zshrc file needs to know the location of the oh-my-zsh;
+but the oh-my-zsh path is convoluted because of the nix paths
+instead, we create a nix configuration scrpt which can create a zshrc file on the fly
+and check it into the nix scripts
+
+install the nix file
+nix-env -i -f ~/dev/git/nix/pkgs/zsh-config.nix
+
+ln -sf $(nix-env -q zshrc_rushi --out-path --no-name) ~/.zshrc
+
+
+If the symbols and fonts are fucked up
+make powerline fonts the default fonts for the system:
+
+
+
+
+
